@@ -1,0 +1,32 @@
+<%= form_for @job do |f| %>
+	Name:
+	<!--<%= f.label :name %>-->
+	<%= f.text_field :name %><br />
+	Purchase Order:
+	<%= f.text_field :purchaseOrder %><br />
+	Customer:
+	<!--<%= f.text_field :customer %><br />-->
+	<%= f.select :customer, Customer.all.collect {|e| [e.customername]} %><br />
+	Owner:
+	<!--<%= f.text_field :owner %><br />-->
+	<%= f.select :owner, Owner.all.collect {|e| [e.ownername]} %><br />
+	Internal Owner:
+	<!--<%= f.text_field :internalOwner %><br />-->
+	<%= f.select :internalOwner, User.all.collect {|e| [e.username]} %><br />
+	Status:
+	<!--<%= f.text_field :status %><br />-->
+	<%= f.select :status, ['Quoting', 'Quoted', 'In Process', 'Shipped', 'Invoiced', 'Completed', 'Canceled', 'Declined']  %><br />
+    <!--<option>Quoting</option>
+    <option>Quoted</option>
+    <option>In Process</option>
+    <option>Invoiced</option>
+    <option>Completed</option>
+    <option>Canceled</option>
+    <option>Declined</option>
+  </select>-->
+	Modified:
+	<%= f.text_field :modified %><br />
+	Due:
+	<%= f.text_field :due %><br />
+	<%= f.submit %>
+<% end %>

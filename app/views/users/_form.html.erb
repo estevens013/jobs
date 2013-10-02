@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>
+	User Name:
+	<%= f.text_field :username %><br />
+	Full Name:
+	<%= f.text_field :fullname %><br />
+	Email:
+	<%= f.text_field :email %><br />
+	Customer:
+	<%= f.select :customer, Customer.all.collect {|e| [e.customername]} %><br />
+	Admin:
+	<%= f.check_box :admin, {}, 'yes', 'no'  %><br />
+	
+	<%= f.submit %>
+<% end %>

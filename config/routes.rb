@@ -1,7 +1,16 @@
 Jobs::Application.routes.draw do
+  get "customers/index"
+
+  get "owners/index"
+
+  get "users/index"
+
   root :to => 'Jobs#index'
 
   resources :jobs
+  resources :users
+  resources :owners
+  resources :customers
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

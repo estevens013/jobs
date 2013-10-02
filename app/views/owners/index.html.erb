@@ -1,0 +1,19 @@
+<h1>Owners</h1>
+<table>
+	<tr>
+		<th>Owner Name</th>
+	</tr>
+	<% for owner in @owners %>
+		<tr id="owner_<%= owner.id %>">
+			<td>
+				<%= owner.ownername %>
+				| <%= link_to 'Edit', edit_owner_path(owner) %>
+				| <%= link_to 'Delete', owner, :method => 'delete' %></td>
+		</tr>
+	<% end %>
+</table>
+<br /><br />
+<%= link_to "New Owner", owners_path, :method => :post %>
+<!--<%= render 'form' %>-->
+
+	

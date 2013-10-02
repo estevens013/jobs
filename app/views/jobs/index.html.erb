@@ -1,2 +1,32 @@
-<h1>Jobs#index</h1>
-<p>Find me in app/views/jobs/index.html.erb</p>
+<h1>Jobs</h1>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>P.O.</th>
+		<th>Customer</th>
+		<th>Owner</th>
+		<th>Internal Owner</th>
+		<th>Status</th>
+		<th>Modified</th>
+		<th>Due</th>
+	</tr>
+	<% for job in @jobs %>
+		<tr id="job_<%= job.id %>">
+			<td><%= job.id %></td>
+			<td><%= job.name %></td>
+			<td><%= job.purchaseOrder %></td>
+			<td><%= job.customer %></td>
+			<td><%= job.owner %></td>
+			<td><%= job.internalOwner %></td>
+			<td><%= job.status %></td>
+			<td><%= job.modified %></td>
+			<td><%= job.due %></td>
+			<td><%= link_to 'Edit', edit_job_path(job) %></td>
+			<td><%= link_to 'Delete', job, :method => 'delete' %></td>
+		</tr>
+	<% end %>
+</table>
+<br /><br />
+<%= link_to "New Job", jobs_path, :method => :post %>
+
