@@ -29,5 +29,11 @@ class UsersController < ApplicationController
     redirect_to :back, :notice => 'User has been deleted'
   end
 
+  private
+
+    def user_params
+      params.require(:user).permit(:username, :fullname, :email, :password, :password_confirmation, :customer, :admin)
+    end
+    
 
 end

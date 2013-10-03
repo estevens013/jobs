@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Users" do
 
   before do
-    @user = User.create username: "Eward", fullname: "Ed Ward", email: "eward@fake.com", customer: "internal", admin: "yes"
+    @user = User.create username: "Eward", fullname: "Ed Ward", email: "eward@fake.com", customer: "internal", admin: "yes", password: "foobar", password_confirmation: "foobar"
   end
 
   describe "GET /users" do
@@ -11,14 +11,12 @@ describe "Users" do
   
      	visit users_path
     	page.should have_content 'Eward'
-      
-
     end
   
     it "creates a new user" do
    	  visit users_path
    	  fill_in 'user_username', :with => 'Nflanders'
-   	  click_button 'Create User'
+   	  click_button 'New User'
 
    	  current_path.should == users_path
    	  page.should have_content('Nflanders')

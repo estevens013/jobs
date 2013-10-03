@@ -5,6 +5,10 @@
 	<%= f.text_field :fullname %><br />
 	Email:
 	<%= f.text_field :email %><br />
+	New Password:
+	<%= f.password_field :password %><br />
+	Confirm Password:
+	<%= f.password_field :password_confirmation %><br />
 	Customer:
 	<%= f.select :customer, Customer.all.collect {|e| [e.customername]} %><br />
 	Admin:
