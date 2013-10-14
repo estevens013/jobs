@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003185508) do
+ActiveRecord::Schema.define(:version => 20131009220317) do
 
   create_table "customers", :force => true do |t|
     t.string   "customername"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20131003185508) do
     t.datetime "updated_at",            :null => false
     t.string   "password"
     t.string   "password_confirmation"
+    t.string   "password_salt"
+    t.string   "password_digest"
   end
 
 end

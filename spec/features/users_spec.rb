@@ -3,8 +3,12 @@ require 'spec_helper'
 describe "Users" do
 
   before do
-    @user = User.create username: "Eward", fullname: "Ed Ward", email: "eward@fake.com", customer: "internal", admin: "yes", password: "foobar", password_confirmation: "foobar"
+    @user = User.create username: "eward", fullname: "Ed Ward", email: "eward@fake.com", customer: "internal", admin: "yes", password: "foobar", password_confirmation: "foobar"
   end
+
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
 
   describe "GET /users" do
     it "display some users" do
@@ -25,7 +29,6 @@ describe "Users" do
     end
   end
 
-  describe "PUT /users" do
     it "edits a user" do
       visit users_path
       click_link 'Edit'
@@ -33,12 +36,12 @@ describe "Users" do
       current_path.should == edit_user_path(@user)
 
       # page.should have_content 'Eward'
-      find_field('user_username').value.should == 'Eward'
+      find_field('user_username').value.should == 'eward'
 
       fill_in 'user_username', :with => 'Dward'
       click_button 'Update User'
 
-      current_path.should == users_path
+      current_path.should == edit_user_path(@user) # users_path
 
       page.should have_content 'Dward'
     end
@@ -53,7 +56,6 @@ describe "Users" do
       current_path.should == edit_user_path(@user)
       page.should have_content 'There was an error updating your User'
     end
-  end
 
   describe "DELETE /users" do
     it "should delete an user" do
