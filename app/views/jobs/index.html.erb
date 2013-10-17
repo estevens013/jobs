@@ -1,6 +1,6 @@
 <h1>Jobs</h1>
 <table>
-	<tr>
+	<tr style="text-align:left;">
 		<th>ID</th>
 		<th>Name</th>
 		<th>P.O.</th>
@@ -22,11 +22,18 @@
 			<td><%= job.status %></td>
 			<td><%= job.modified %></td>
 			<td><%= job.due %></td>
+			<!-- ADMIN RESTRICTED -->
+			<% if admin? %>
 			<td><%= link_to 'Edit', edit_job_path(job) %></td>
 			<td><%= link_to 'Delete', job, :method => 'delete' %></td>
+			<% end %>
+			<!-- END ADMIN RESTRICTED -->
 		</tr>
 	<% end %>
 </table>
 <br /><br />
+<!-- ADMIN RESTRICTED -->
+<% if admin? %>
 <%= link_to "New Job", jobs_path, :method => :post %>
-
+<% end %>
+<!-- END ADMIN RESTRICTED -->

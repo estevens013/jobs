@@ -5,13 +5,23 @@
 	</tr>
 	<% for customer in @customers %>
 		<tr id="customer_<%= customer.id %>">
-			<td><%= customer.customername %>
-			| <%= link_to 'Edit', edit_customer_path(customer) %>
-			| <%= link_to 'Delete', customer, :method => 'delete' %>
-		</td>
+			<td>
+				<%= customer.customername %>
+			</td>
+			<!-- ADMIN RESTRICTED -->
+			<% if admin? %>
+			<td>
+				<%= link_to 'Edit', edit_customer_path(customer) %>
+				| <%= link_to 'Delete', customer, :method => 'delete' %>
+			</td>
+			<% end %>
+			<!-- END ADMIN RESTRICTED -->
 		</tr>
 	<% end %>
 </table>
 <br /><br />
+<!-- ADMIN RESTRICTED -->
+<% if admin? %>
 <%= link_to "New Customer", customers_path, :method => :post %>
-<!--<%= render 'form' %>-->
+<% end %>
+<!-- END ADMIN RESTRICTED -->

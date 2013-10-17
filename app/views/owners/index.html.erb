@@ -7,13 +7,21 @@
 		<tr id="owner_<%= owner.id %>">
 			<td>
 				<%= owner.ownername %>
-				| <%= link_to 'Edit', edit_owner_path(owner) %>
-				| <%= link_to 'Delete', owner, :method => 'delete' %></td>
+			</td>
+			<!-- ADMIN RESTRICTED -->
+			<% if admin? %>
+			<td>
+				<%= link_to 'Edit', edit_owner_path(owner) %>
+				| <%= link_to 'Delete', owner, :method => 'delete' %>
+			</td>
+			<% end %>
+			<!-- END ADMIN RESTRICTED -->
 		</tr>
 	<% end %>
 </table>
 <br /><br />
+<!-- ADMIN RESTRICTED -->
+<% if admin? %>
 <%= link_to "New Owner", owners_path, :method => :post %>
-<!--<%= render 'form' %>-->
-
-	
+<% end %>
+<!-- END ADMIN RESTRICTED -->

@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  before_filter :authorize
+
   def index
   	@customer = Customer.new
   	@customers = Customer.all

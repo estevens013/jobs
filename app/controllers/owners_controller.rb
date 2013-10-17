@@ -1,4 +1,6 @@
 class OwnersController < ApplicationController
+  before_filter :authorize
+  
   def index
   	@owner = Owner.new
   	@owners = Owner.all

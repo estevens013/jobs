@@ -1,14 +1,13 @@
 class JobsController < ApplicationController
+  #before_filter :authorize
+
   def index
     @job = Job.new
   	@jobs = Job.all
+    @jobs = Job.order 'created_at DESC'
   end
 
   def create
-  	## render :text => params.inspect
-  	## [:name, :purchaseOrder, :customer, :owner, :internalOwner, :status, :modified, :due]
-  	# Job.create[:job]
-  	# redirect_to :back
   	@job = Job.new(params[:job])
   	if @job.save
   		redirect_to :back
