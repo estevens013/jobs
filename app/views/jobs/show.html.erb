@@ -1,0 +1,19 @@
+<% title " - Job" %>
+<div class="content">
+	<h2>#<%= @job.id %></h2>
+	<h3><%= @job.name %></h3>
+	<h4>Purchase Order: <%= @job.purchaseOrder %></h4>
+	<h4>For: <%= @job.owner %> / <%= @job.customer %></h4>
+	<% if admin? || current_user.customer == "In Ternal" %>
+	<h4>2G Rep: <%= @job.internalOwner %></h4>
+	<% end %>
+	<h4><%= @job.status %></h4>
+	<% if @job.status == "In Process" || @job.status == "Quoted" || @job.status == "Quoting" %>
+		<h5>Due: <%= @job.due %></h5>
+	<% end %>
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? || current_user.customer == "In Ternal" %>
+	&nbsp;<%= link_to 'Edit', edit_job_path(@job) %>
+	&nbsp;<%= link_to 'Delete', @job, :method => 'delete' %>
+	<% end %>
+</div>

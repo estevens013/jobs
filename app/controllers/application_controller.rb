@@ -14,6 +14,15 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def access
+    if current_user == nil
+      flash[:error] = "Please sign in for access"
+      redirect_to '/signin'
+    # else
+    #   redirect_to jobs_path
+    end
+  end
+
   def admin?
   	if current_user == nil
   		#flash[:error] = "Nil current_user"
@@ -23,8 +32,10 @@ class ApplicationController < ActionController::Base
   		# redirect_to jobs_path
   		if current_user.admin == "yes"
 	  		true
+        # redirect_to 'job_path'
 	  	elsif current_user.admin == "no"
 	  		false
+        # render 'index'
 	  	end
 	 	end
   end

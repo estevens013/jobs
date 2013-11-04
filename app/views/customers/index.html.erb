@@ -1,27 +1,30 @@
-<h1>Customers</h1>
-<table>
-	<tr>
-		<th>Customer Name</th>
-	</tr>
-	<% for customer in @customers %>
-		<tr id="customer_<%= customer.id %>">
-			<td>
-				<%= customer.customername %>
-			</td>
-			<!-- ADMIN RESTRICTED -->
-			<% if admin? %>
-			<td>
-				<%= link_to 'Edit', edit_customer_path(customer) %>
-				| <%= link_to 'Delete', customer, :method => 'delete' %>
-			</td>
-			<% end %>
-			<!-- END ADMIN RESTRICTED -->
+<% title " - Customers" %>
+<div class="content">
+	<h1>Customers</h1>
+	<table>
+		<tr>
+			<th>Customer Name</th>
 		</tr>
+		<% for customer in @customers %>
+			<tr id="customer_<%= customer.id %>">
+				<td>
+					<%= customer.customername %>
+				</td>
+				<!-- ADMIN RESTRICTED -->
+				<% if admin? %>
+				<td>
+					<%= link_to 'Edit', edit_customer_path(customer) %>
+					| <%= link_to 'Delete', customer, :method => 'delete' %>
+				</td>
+				<% end %>
+				<!-- END ADMIN RESTRICTED -->
+			</tr>
+		<% end %>
+	</table>
+	<br /><br />
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? %>
+	<%= link_to "New Customer", customers_path, :method => :post %>
 	<% end %>
-</table>
-<br /><br />
-<!-- ADMIN RESTRICTED -->
-<% if admin? %>
-<%= link_to "New Customer", customers_path, :method => :post %>
-<% end %>
 <!-- END ADMIN RESTRICTED -->
+</div>

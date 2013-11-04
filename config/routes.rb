@@ -1,4 +1,6 @@
 Jobs::Application.routes.draw do
+  get "dashboard/index"
+
   # get "sessions/new"
 
   get "customers/index"
@@ -7,18 +9,35 @@ Jobs::Application.routes.draw do
 
   get "users/index"
 
+  get "parts/index"
+
   # root :to => 'Jobs#index'
-  root :to => 'sessions#new'
+  # root :to => 'sessions#new'
 
   resources :jobs
   resources :users
   resources :owners
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
+  resources :parts
+  # resources :jobs, :collection => { :completed => :get }
 
   # match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy'
+  match '/signin',    to: 'sessions#new'
+  match '/signout',   to: 'sessions#destroy'
+  #match '/search',    to: 'jobs#show'
+  match '/search',    to: 'jobs#show_searched'
+  match '/declined',  to: 'jobs#show_declined'
+  match '/canceled',  to: 'jobs#show_canceled'
+  match '/completed', to: 'jobs#show_completed'
+  # match '/view_job/:id', to: 'jobs#view_job'
+  match '/view_job', to: 'jobs#view_job'
+
+
+  # match '/jobs/:id/view_job', to: 'jobs#view_job'
+  # match '/view_job', to: 'jobs/id/#view_job'
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -65,10 +84,13 @@ Jobs::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  namespace :admin do 
+    get '', to: 'dashboard#index', as: '/' 
+  end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'public#index'
 
   # See how all your routes lay out with "rake routes"
 

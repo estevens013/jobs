@@ -1,0 +1,11 @@
+<% title " - Part" %>
+<div class="content">
+	<h4>Part Number: <%= @part.partNumber %></h4>
+	<h4>Qty: <%= @part.partQuantity %></h4>
+	<h4>Job: <%= @part.job_id %></h4>
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? || current_user.customer == "In Ternal" %>
+	&nbsp;<%= link_to 'Edit', edit_part_path(@part) %>
+	&nbsp;<%= link_to 'Delete', @part, :method => 'delete' %>
+	<% end %>
+</div>

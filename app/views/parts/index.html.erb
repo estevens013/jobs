@@ -1,0 +1,38 @@
+<% title " - Parts" %>
+<div class="content">
+	<h1>Parts</h1>
+	<table>
+		<tr style="text-align:left;">
+			<th>Part Number</th>
+			<th style="padding-left: 10px;">Qty.</th>
+			<th style="padding-left: 10px;">Job</th>
+		</tr>
+		<% for part in @parts %>
+			<tr id="part_<%= part.id %>">
+				<td>
+					<%= link_to part.partNumber, part_path(part) %>
+				</td>
+				<td style="padding-left: 10px;">
+					<%= part.partQuantity %>
+				</td>
+				<td style="padding-left: 10px;">
+					<%= part.job_id %>
+				</td>
+				<!-- ADMIN RESTRICTED -->
+				<% if admin? %>
+				<td style="padding-left: 10px;">
+					<%= link_to 'Edit', edit_part_path(part) %>
+					| <%= link_to 'Delete', part, :method => 'delete' %>
+				</td>
+				<% end %>
+				<!-- END ADMIN RESTRICTED -->
+			</tr>
+		<% end %>
+	</table>
+	<br /><br />
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? %>
+	<%= link_to "New Part", parts_path, :method => :post %>
+	<% end %>
+	<!-- END ADMIN RESTRICTED -->
+</div>

@@ -1,27 +1,30 @@
-<h1>Owners</h1>
-<table>
-	<tr>
-		<th>Owner Name</th>
-	</tr>
-	<% for owner in @owners %>
-		<tr id="owner_<%= owner.id %>">
-			<td>
-				<%= owner.ownername %>
-			</td>
-			<!-- ADMIN RESTRICTED -->
-			<% if admin? %>
-			<td>
-				<%= link_to 'Edit', edit_owner_path(owner) %>
-				| <%= link_to 'Delete', owner, :method => 'delete' %>
-			</td>
-			<% end %>
-			<!-- END ADMIN RESTRICTED -->
+<% title " - Owners" %>
+<div class="content">
+	<h1>Owners</h1>
+	<table>
+		<tr>
+			<th>Owner Name</th>
 		</tr>
+		<% for owner in @owners %>
+			<tr id="owner_<%= owner.id %>">
+				<td>
+					<%= owner.ownername %>
+				</td>
+				<!-- ADMIN RESTRICTED -->
+				<% if admin? %>
+				<td>
+					<%= link_to 'Edit', edit_owner_path(owner) %>
+					| <%= link_to 'Delete', owner, :method => 'delete' %>
+				</td>
+				<% end %>
+				<!-- END ADMIN RESTRICTED -->
+			</tr>
+		<% end %>
+	</table>
+	<br /><br />
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? %>
+	<%= link_to "New Owner", owners_path, :method => :post %>
 	<% end %>
-</table>
-<br /><br />
-<!-- ADMIN RESTRICTED -->
-<% if admin? %>
-<%= link_to "New Owner", owners_path, :method => :post %>
-<% end %>
-<!-- END ADMIN RESTRICTED -->
+	<!-- END ADMIN RESTRICTED -->
+</div>

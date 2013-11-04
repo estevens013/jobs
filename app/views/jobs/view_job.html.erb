@@ -1,0 +1,23 @@
+<% title " - Job" %>
+<div class="content">
+<h1><%= job.id %></h1>
+<table>
+	<tr>
+		<!-- <td><%= job.id %></td> -->
+		<td><%= job.name %></td>
+		<td><%= job.purchaseOrder %></td>
+		<td><%= job.customer %></td>
+		<td><%= job.owner %></td>
+		<td><%= job.internalOwner %></td>
+		<td><%= job.status %></td>
+		<td><%= job.modified %></td>
+		<td><%= job.due %></td>
+		<!-- ADMIN RESTRICTED -->
+		<% if admin? || current_user.customer == "In Ternal" %>
+		<td>&nbsp;<%= link_to 'Edit', edit_job_path(job) %></td>
+		<td>&nbsp;<%= link_to 'Delete', job, :method => 'delete' %></td>
+		<% end %>
+	</tr>
+</table>
+<br /><br />
+</div>

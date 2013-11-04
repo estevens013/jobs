@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
-	
+	# before_filter :logged_In
+
 	def new
 	end
 
 	def create
 	  user = User.authenticate(params[:email], params[:password])
-	  if user
+	  if user 
 	    session[:user_id] = user.id
 	    redirect_to jobs_path, :notice => "Logged in!"
 	  else

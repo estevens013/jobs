@@ -1,0 +1,34 @@
+<%= form_for @part do |f| %>
+<table>
+	<tr>
+		<td class="alignRight">
+			Part Number:
+		</td>
+		<td>
+			<%= f.text_field :partNumber %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Qty:
+		</td>
+		<td>
+			<%= f.text_field :partQuantity %>
+		</td>
+	</tr>
+	<tr>
+  <td class="alignRight">
+    Job:
+  </td>
+  <td>
+    <%= f.text_field :job_id %>
+  </td>
+</tr> 
+
+	<tr class="alignCenter">
+		<td colspan="2">
+			<%= f.submit %>
+		</td>
+	</tr>
+</table>
+<% end %>

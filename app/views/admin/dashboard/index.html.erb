@@ -1,0 +1,16 @@
+<% title " - Admin" %>
+<div class="content">
+	<h1>Admin</h1>
+	<%= link_to 'Manage Users', users_path %><br /><br />
+	<!-- <p><a href="users_path">Manage Users</a></p> -->
+	<!-- <p><a href="/admin/list_customers?bk=%2Fadmin">Manage Customers</a></p> -->
+	<%= link_to 'Manage Customers', customers_path %><br /><br />
+	<%= link_to 'Manage Owners', owners_path %><br /><br />
+	<!a href="/documents?bk=%2Fadmin">Manage Documents</a><br /><br />
+	<!-- <!a href="/jobs/list?bk=%2Fadmin&amp;only=Declined">Declined Jobs</a><br /><br /> -->
+	<%= link_to 'Declined Jobs', declined_path %><br /><br />
+	<!-- <!a href="/jobs/list?only=Canceled">Canceled Jobs</a><br /><br /> -->
+	<%= link_to 'Canceled Jobs', canceled_path %><br /><br />
+	<%= link_to 'Completed Jobs', completed_path %><br /><br />
+	<!a href="/admin/vendors/list?bk=%2Fadmin">Manage Vendors</a><br /><br />
+</div>

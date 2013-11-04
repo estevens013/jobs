@@ -1,5 +1,17 @@
 <%= form_for @owner do |f| %>
-	Owner Name:
-	<%= f.text_field :ownername %><br />
-	<%= f.submit %>
+<table>
+	<tr>
+		<td class="alignRight">
+			Owner Name:
+		</td>
+		<td>
+			<%= f.text_field :ownername %>
+		</td>
+	</tr>
+	<tr class="alignCenter">
+		<td colspan="2">
+			<%= f.submit %>
+		</td>
+	</tr>
+</table>
 <% end %>

@@ -1,24 +1,78 @@
 <%= form_for @job do |f| %>
-	Name:
-	<!--<%= f.label :name %>-->
-	<%= f.text_field :name %><br />
-	Purchase Order:
-	<%= f.text_field :purchaseOrder %><br />
-	Customer:
-	<!--<%= f.text_field :customer %><br />-->
-	<%= f.select :customer, Customer.all.collect {|e| [e.customername]} %><br />
-	Owner:
-	<!--<%= f.text_field :owner %><br />-->
-	<%= f.select :owner, Owner.all.collect {|e| [e.ownername]} %><br />
-	Internal Owner:
-	<!--<%= f.text_field :internalOwner %><br />-->
-	<%= f.select :internalOwner, User.all.collect {|e| [e.username]} %><br />
-	Status:
-	<!--<%= f.text_field :status %><br />-->
-	<%= f.select :status, ['Quoting', 'Quoted', 'In Process', 'Shipped', 'Invoiced', 'Completed', 'Canceled', 'Declined']  %><br />
-	Modified:
-	<%= f.text_field :modified %><br />
-	Due:
-	<%= f.text_field :due %><br />
-	<%= f.submit %>
+<table>
+	<tr>
+		<td class="alignRight">
+			Name:
+			<!--<%= f.label :name %>-->
+		</td>
+		<td>
+			<%= f.text_field :name %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Purchase Order:
+		</td>
+		<td>
+			<%= f.text_field :purchaseOrder %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Customer:
+			<!--<%= f.text_field :customer %><br />-->
+		</td>
+		<td>
+			<%= f.select :customer, Customer.all.collect {|e| [e.customername]} %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Owner:
+			<!--<%= f.text_field :owner %><br />-->
+		</td>
+		<td>
+			<%= f.select :owner, Owner.all.collect {|e| [e.ownername]} %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Internal Owner:
+			<!--<%= f.text_field :internalOwner %><br />-->
+		</td>
+		<td>
+			<%= f.select :internalOwner, User.all.collect {|e| [e.username]} %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Status:
+			<!--<%= f.text_field :status %><br />-->
+		</td>
+		<td>
+			<%= f.select :status, ['Quoting', 'Quoted', 'In Process', 'Shipped', 'Invoiced', 'Completed', 'Canceled', 'Declined']  %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Modified:
+		</td>
+		<td>
+			<%= f.text_field :modified %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Due:
+		</td>
+		<td>
+			<%= f.text_field :due %>
+		</td>
+	</tr>
+	<tr class="alignCenter">
+		<td colspan="2">
+			<%= f.submit %>
+		</td>
+	</tr>
+</table>
 <% end %>

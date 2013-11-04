@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jobs</title>
+  <title>Jobs System<%= yield(:title) || "ABC Inc." %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 	<div id="user_nav">
 		<% if current_user %>
-			Logged in as: <strong><%= current_user.username %></strong><br />
-			<%= link_to "Log Out", signout_path %>
+			Logged in as: 
+			<strong><%= current_user.username %></strong>
+			(<%= link_to "Log Out", signout_path %>)
+			<div id="search_field">
+				<form action="<%= search_path %>" method="get" >
+				  <%= text_field_tag :search, params[:search] %>
+				  <%= submit_tag "Search", :name => nil%>
+				</form> 
+		</div>
+		<div id="header_links">
+			<%= link_to "Current Jobs", jobs_path %> 
+			<% if admin? %>
+			|| <%= link_to "Admin", admin_path %>
+			<% end %>
+		</div>
 		<% else %>
 			<%= link_to "Log In", signin_path %>
-		<% end %>		
+		<% end %>	
 	</div>
 
 <% flash.each do |name, message| %>
