@@ -6,6 +6,8 @@ class PartsController < ApplicationController
   end
 
   def create
+  	# ###For assocations###
+  	# @part = current_job.parts.build(params[:part])
   	@part = Part.new(params[:part])
   	if @part.save
   		redirect_to :back

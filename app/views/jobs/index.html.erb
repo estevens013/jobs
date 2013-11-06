@@ -16,26 +16,26 @@
 			<th>Due</th>
 		</tr>
 		<% for job in @jobs %>
-			<tr id="job_<%= job.id %>">
-				<td><%= job.id %></td>
-				<!-- <td><%= job.name %></td> -->
-				<td><%= link_to job.name, job_path(job) %></td>
-				<td><%= job.purchaseOrder %></td>
-				<td><%= job.customer %></td>
-				<td><%= job.owner %></td>
-				<% if admin? || current_user.customer == "In Ternal" %>
-				<td><%= job.internalOwner %></td>
-				<% end %>
-				<td><%= job.status %></td>
-				<td><%= job.modified %></td>
-				<td><%= job.due %></td>
-				<!-- ADMIN RESTRICTED -->
-				<% if admin? || current_user.customer == "In Ternal" %>
-				<td>&nbsp;<%= link_to 'Edit', edit_job_path(job) %></td>
-				<td>&nbsp;<%= link_to 'Delete', job, :method => 'delete' %></td>
-				<% end %>
-				<!-- END ADMIN RESTRICTED -->
-			</tr>
+		<tr id="job_<%= job.id %>">
+			<td><%= job.id %></td>
+			<!-- <td><%= job.name %></td> -->
+			<td><%= link_to job.name, job_path(job) %></td>
+			<td><%= job.purchaseOrder %></td>
+			<td><%= job.customer %></td>
+			<td><%= job.owner %></td>
+			<% if admin? || current_user.customer == "In Ternal" %>
+			<td><%= job.internalOwner %></td>
+			<% end %>
+			<td><%= job.status %></td>
+			<td><%= job.modified %></td>
+			<td><%= job.due %></td>
+			<!-- ADMIN RESTRICTED -->
+			<% if admin? || current_user.customer == "In Ternal" %>
+			<td>&nbsp;<%= link_to 'Edit', edit_job_path(job) %></td>
+			<td>&nbsp;<%= link_to 'Delete', job, :method => 'delete' %></td>
+			<% end %>
+			<!-- END ADMIN RESTRICTED -->
+		</tr>
 		<% end %>
 	</table>
 	<br /><br />

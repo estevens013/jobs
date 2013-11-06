@@ -11,6 +11,32 @@
 	<% if @job.status == "In Process" || @job.status == "Quoted" || @job.status == "Quoting" %>
 		<h5>Due: <%= @job.due %></h5>
 	<% end %>
+	<!-- ###################### -->
+	<!-- ##### Part Table ##### -->
+	<!-- ###################### -->
+	<table>
+		<tr>
+			<th>Part Number:</th>
+			<th>Qty:</th>
+			<th>&nbsp;</th>
+		</tr>
+		<% for part in @job.parts %>
+		<tr>
+			<td><%= part.partNumber %></td>
+			<td><%= part.partQuantity %></td>
+			<td>
+				<% if admin? || current_user.customer == "In Ternal" %>
+					&nbsp;<%= link_to 'Edit', edit_part_path(@job.parts) %>
+					&nbsp;<%= link_to 'Delete', @job.parts, :method => 'delete' %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<!-- ###################### -->
+	<!-- ##### Part Table ##### -->
+	<!-- ###################### -->
+	<br /><br />
 	<!-- ADMIN RESTRICTED -->
 	<% if admin? || current_user.customer == "In Ternal" %>
 	&nbsp;<%= link_to 'Edit', edit_job_path(@job) %>

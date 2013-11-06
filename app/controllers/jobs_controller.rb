@@ -48,8 +48,9 @@ class JobsController < ApplicationController
   end
 
   def show
-    #@jobs = Job.search(params[:search]) 
     @job = Job.find params[:id]
+    # ###For assocations###
+    @parts = @job.parts
   end
 
   def show_searched
