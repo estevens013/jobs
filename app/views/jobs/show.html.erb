@@ -21,13 +21,14 @@
 			<th>&nbsp;</th>
 		</tr>
 		<% for part in @job.parts %>
-		<tr>
-			<td><%= part.partNumber %></td>
+		<tr id="part_<%= part.id %>">
+			<td><%= link_to part.partNumber, part_path(part) %></td>
+			<!-- <td><%= part.partNumber %></td> -->
 			<td><%= part.partQuantity %></td>
 			<td>
 				<% if admin? || current_user.customer == "In Ternal" %>
 					&nbsp;<%= link_to 'Edit', edit_part_path(@job.parts) %>
-					&nbsp;<%= link_to 'Delete', @job.parts, :method => 'delete' %>
+					&nbsp;<%= link_to 'Delete', part, :method => 'delete' %>
 				<% end %>
 			</td>
 		</tr>
