@@ -20,9 +20,9 @@
 				</td>
 				<!-- ADMIN RESTRICTED -->
 				<% if admin? %>
-				<td style="padding-left: 10px;">
-					<%= link_to 'Edit', edit_part_path(part) %>
-					| <%= link_to 'Delete', part, :method => 'delete' %>
+				<td>
+				<%= link_to 'Edit', edit_part_path(part) %>
+				<!-- | <%= link_to 'Delete', part, :method => 'delete' %> -->
 				</td>
 				<% end %>
 				<!-- END ADMIN RESTRICTED -->
@@ -30,9 +30,9 @@
 		<% end %>
 	</table>
 	<br /><br />
-	<!-- ADMIN RESTRICTED -->
+	<!-- ADMIN RESTRICTED
 	<% if admin? %>
 	<%= link_to "New Part", parts_path, :method => :post %>
 	<% end %>
-	<!-- END ADMIN RESTRICTED -->
+	END ADMIN RESTRICTED -->
 </div>

@@ -36,7 +36,7 @@ describe "Parts" do
       fill_in 'part_partNumber', :with => 'Part B. Updated'
       click_button 'Update Part'
 
-      current_path.should == owners_path
+      current_path.should == parts_path
 
       page.should have_content 'Part B. Updated'
     end

@@ -1,4 +1,5 @@
 class PartsController < ApplicationController
+	before_filter :authorize
 
 	def index
   	@part = Part.new

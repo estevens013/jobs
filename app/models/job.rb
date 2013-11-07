@@ -6,17 +6,26 @@ class Job < ActiveRecord::Base
 
   def self.search(search)
 	  if search
-	    # find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-	    where 'id LIKE ? OR 
-	    				name LIKE ? OR 
-	    				purchaseOrder LIKE ? OR
-	    			 	customer LIKE ? OR 
-	    			 	owner LIKE ? OR
-	    			 	internalOwner LIKE ? OR
-	    			 	status LIKE ?', 
-	    			 	"%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"
-	    			 # :due, :internalOwner, :modified, :status
-	  else
+	  	q = "%#{search}%"
+	    # where 'id LIKE ? OR
+	    # 				name LIKE ? OR 
+	    # 				purchaseOrder LIKE ? OR
+	    # 			 	customer LIKE ? OR 
+	    # 			 	owner LIKE ? OR
+	    # 			 	internalOwner LIKE ? OR
+	    # 			 	status LIKE ?', 
+	    # 			 	q, q, q, q, q, q, q
+	    # Job.where(:id => q, :name => q, :purchaseOrder => q).joins(:parts).where("parts.partNumber = ?", q)
+	    joins(:parts).where('jobs.id LIKE ? OR 
+	    				jobs.name LIKE ? OR 
+	    				jobs.purchaseOrder LIKE ? OR
+	    			 	jobs.customer LIKE ? OR 
+	    			 	jobs.owner LIKE ? OR
+	    			 	jobs.internalOwner LIKE ? OR
+	    			 	jobs.status LIKE ? OR
+	    			 	parts.partNumber LIKE ?',
+	    			 	q, q, q, q, q, q, q, q)
+    else
 	    # find(:all)
 	    scoped
 	  end

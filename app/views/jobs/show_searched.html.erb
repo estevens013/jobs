@@ -16,7 +16,7 @@
 		<% for job in @jobs %>
 			<tr id="job_<%= job.id %>">
 				<td><%= job.id %></td>
-				<td><%= job.name %></td>
+				<td><%= link_to job.name, job_path(job) %></td>
 				<td><%= job.purchaseOrder %></td>
 				<td><%= job.customer %></td>
 				<td><%= job.owner %></td>

@@ -11,11 +11,9 @@
 	<% if @job.status == "In Process" || @job.status == "Quoted" || @job.status == "Quoting" %>
 		<h5>Due: <%= @job.due %></h5>
 	<% end %>
-	<!-- ###################### -->
 	<!-- ##### Part Table ##### -->
-	<!-- ###################### -->
 	<table>
-		<tr>
+		<tr style="text-align:left;">
 			<th>Part Number:</th>
 			<th>Qty:</th>
 			<th>&nbsp;</th>
@@ -23,20 +21,24 @@
 		<% for part in @job.parts %>
 		<tr id="part_<%= part.id %>">
 			<td><%= link_to part.partNumber, part_path(part) %></td>
-			<!-- <td><%= part.partNumber %></td> -->
 			<td><%= part.partQuantity %></td>
 			<td>
 				<% if admin? || current_user.customer == "In Ternal" %>
-					&nbsp;<%= link_to 'Edit', edit_part_path(part) %>
 					&nbsp;<%= link_to 'Delete', part, :method => 'delete' %>
 				<% end %>
 			</td>
 		</tr>
 		<% end %>
+		<tr>
+			<%= form_for @job.parts.create do |f| %>
+			<td><%= f.text_field :partNumber %></td>
+			<td><%= f.text_field :partQuantity %></td>
+			<%= f.hidden_field :job_id, :value => @job.id %>
+			<td><%= f.submit %></td>
+			<% end %>
+		</tr>
 	</table>
-	<!-- ###################### -->
 	<!-- ##### Part Table ##### -->
-	<!-- ###################### -->
 	<br /><br />
 	<!-- ADMIN RESTRICTED -->
 	<% if admin? || current_user.customer == "In Ternal" %>
