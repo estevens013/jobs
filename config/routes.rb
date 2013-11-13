@@ -11,6 +11,8 @@ Jobs::Application.routes.draw do
 
   get "parts/index"
 
+  get "documents/index"
+
   # root :to => 'Jobs#index'
   # root :to => 'sessions#new'
 
@@ -20,6 +22,7 @@ Jobs::Application.routes.draw do
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
   resources :parts
+  resources :documents
   # resources :jobs, :collection => { :completed => :get }
 
   # match '/signup',  to: 'users#new'

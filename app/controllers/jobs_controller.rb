@@ -31,12 +31,14 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find params[:id]
+    session[:return_to] ||= request.referer
   end
 
   def update
     job = Job.find params[:id]
     if job.update_attributes params[:job]
-      redirect_to jobs_path, :notice => 'Your Job has successfully been updated'
+      # redirect_to jobs_path, :notice => 'Your Job has successfully been updated'
+      redirect_to session.delete(:return_to), :notice => 'Your Job has successfully been updated'
     else
       redirect_to :back, :notice => 'There was an error updating your Job'
     end
@@ -51,6 +53,7 @@ class JobsController < ApplicationController
     @job = Job.find params[:id]
     # ###For assocations###
     @parts = @job.parts
+    @documents = @job.documents
   end
 
   def show_searched

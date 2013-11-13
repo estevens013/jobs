@@ -17,12 +17,23 @@ class PartsController < ApplicationController
 
   def edit
   	@part = Part.find params[:id]
+    session[:return_to] ||= request.referer
   end
 
   def update
   	part = Part.find params[:id]
+    # job = Part.find params[:job_id, :value => @job.id]
+    # @job = Part.jobs.new(params[:job])
+    # @parts = @job.parts
   	if part.update_attributes params[:part]
-  		redirect_to parts_path, :notice => 'Your Part has successfully been updated'
+  		# redirect_to jobs_path, :notice => 'Your Part has successfully been updated'
+      # redirect_to jobs_path(:value => @job.id), :notice => 'Your Part has successfully been updated'
+
+      # ##### Functioning, but not how I want.  Redirects back to Part view ##### #
+      redirect_to session.delete(:return_to), :notice => 'Your Part has successfully been updated'
+      # redirect_to job(@job)
+      # <%= form_for @job.parts.create do |f| %>
+      # <%= f.hidden_field :job_id, :value => @job.id %>
   	else
   		redirect_to :back, :notice => 'There was an error updating your Part'
   	end

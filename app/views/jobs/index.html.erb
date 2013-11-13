@@ -12,6 +12,7 @@
 			<th>Internal Owner</th>
 			<% end %>
 			<th>Status</th>
+			<th>&nbsp;</th>
 			<th>Modified</th>
 			<th>Due</th>
 		</tr>
@@ -27,14 +28,22 @@
 			<td><%= job.internalOwner %></td>
 			<% end %>
 			<td><%= job.status %></td>
+			<% if job.status == "Invoiced" && job.invoicePaid == true %>
+			<!-- <td><%= job.invoicePaid %></td> -->
+			<td><b>&#9745;</b></td>
+			<% elsif job.status == "Invoiced" && job.invoicePaid == false %>
+			<td><b>&#9744;</b></td>
+			<% else %>
+			<td>&nbsp;</td>
+			<% end %>
 			<td><%= job.modified %></td>
 			<td><%= job.due %></td>
-			<!-- ADMIN RESTRICTED -->
+			<!-- ADMIN RESTRICTED
 			<% if admin? || current_user.customer == "In Ternal" %>
 			<td>&nbsp;<%= link_to 'Edit', edit_job_path(job) %></td>
 			<td>&nbsp;<%= link_to 'Delete', job, :method => 'delete' %></td>
 			<% end %>
-			<!-- END ADMIN RESTRICTED -->
+			END ADMIN RESTRICTED -->
 		</tr>
 		<% end %>
 	</table>

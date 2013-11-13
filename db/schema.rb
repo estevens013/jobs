@@ -11,12 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104195425) do
+ActiveRecord::Schema.define(:version => 20131113171004) do
 
   create_table "customers", :force => true do |t|
     t.string   "customername"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "documents", :force => true do |t|
+    t.string   "documentName"
+    t.string   "documentDescription"
+    t.string   "documentType"
+    t.string   "documentSize"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "job_id"
   end
 
   create_table "jobs", :force => true do |t|
@@ -30,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20131104195425) do
     t.date     "due"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "invoicePaid"
   end
 
   create_table "owners", :force => true do |t|
@@ -42,8 +53,14 @@ ActiveRecord::Schema.define(:version => 20131104195425) do
     t.string   "partNumber"
     t.string   "partQuantity"
     t.integer  "job_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "partRev"
+    t.string   "partSerial"
+    t.date     "partVendorDue"
+    t.string   "partStatus"
+    t.date     "partShipDate"
+    t.string   "partTracking"
   end
 
   create_table "users", :force => true do |t|

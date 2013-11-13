@@ -15,15 +15,28 @@
 	<table>
 		<tr style="text-align:left;">
 			<th>Part Number:</th>
+			<th>Rev:</th>
+			<th>Serial:</th>
 			<th>Qty:</th>
+			<th>Status:</th>
+			<th>Due:</th>
+			<th>Shipped:</th>
+			<th>Tracking:</th>
 			<th>&nbsp;</th>
 		</tr>
 		<% for part in @job.parts %>
 		<tr id="part_<%= part.id %>">
-			<td><%= link_to part.partNumber, part_path(part) %></td>
-			<td><%= part.partQuantity %></td>
+			<td style="padding-right:25px"><%= link_to part.partNumber, part_path(part) %></td>
+			<td style="padding-right:25px"><%= part.partRev %></td>
+			<td><%= part.partSerial %></td>
+			<td style="padding-right:25px"><%= part.partQuantity %></td>
+			<td><%= part.partStatus %></td>
+			<td><%= part.partVendorDue %></td>
+			<td><%= part.partShipDate %></td>
+			<td><%= part.partTracking %></td>
 			<td>
 				<% if admin? || current_user.customer == "In Ternal" %>
+					&nbsp;<%= link_to 'Edit', edit_part_path(part) %>
 					&nbsp;<%= link_to 'Delete', part, :method => 'delete' %>
 				<% end %>
 			</td>
@@ -31,18 +44,46 @@
 		<% end %>
 		<tr>
 			<%= form_for @job.parts.create do |f| %>
-			<td><%= f.text_field :partNumber %></td>
-			<td><%= f.text_field :partQuantity %></td>
+			<td colspan=""><%= f.text_field :partNumber, :size => "12x1"  %></td>
+			<!-- <td>&nbsp;</td> -->
+			<td colspan="2"><%= f.text_field :partRev, :size => "6x1"  %></td>
+			<td colspan=""><%= f.text_field :partQuantity, :size => "6x1" %></td>
 			<%= f.hidden_field :job_id, :value => @job.id %>
-			<td><%= f.submit %></td>
+			<td><%= f.submit "Add Part"%></td>
 			<% end %>
 		</tr>
 	</table>
 	<!-- ##### Part Table ##### -->
-	<br /><br />
+	<br />
+	<!-- ##### Doc Table ##### -->
+	<table>
+		<tr style="text-align:left;">
+			<th>Doc Number:</th><!--:documentName --> 
+			<th>Doc Desc:</th>  <!--:documentDescription --> 
+			<th>Doc Type:</th>  <!--:documentType --> 
+			<th>Doc Size:</th>  <!--:documentSize --> 
+		</tr>
+		<% for document in @job.documents %>
+		<tr id="document_<%= document.id %>">
+			<td style="padding-right:25px"><%= link_to document.documentName, document_path(document) %></td>
+			<td style="padding-right:25px"><%= document.documentDescription %></td>
+			<td><%= document.documentType %></td>
+			<td style="padding-right:25px"><%= document.documentSize %></td>
+			<td>
+				<% if admin? || current_user.customer == "In Ternal" %>
+					&nbsp;<%= link_to 'Edit', edit_document_path(document) %>
+					&nbsp;<%= link_to 'Delete', part, :method => 'delete' %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<!-- ##### Doc Table ##### -->
+	<br />
 	<!-- ADMIN RESTRICTED -->
 	<% if admin? || current_user.customer == "In Ternal" %>
-	&nbsp;<%= link_to 'Edit', edit_job_path(@job) %>
-	&nbsp;<%= link_to 'Delete', @job, :method => 'delete' %>
+	&nbsp;<%= link_to 'Edit Job', edit_job_path(@job) %>
+	<!-- &nbsp;<%= link_to 'Delete', @job, :method => 'delete' %> -->
 	<% end %>
 </div>
+<br /><br />

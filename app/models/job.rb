@@ -1,7 +1,8 @@
 class Job < ActiveRecord::Base
 	has_many :parts
+	has_many :documents
 
-  attr_accessible :customer, :due, :internalOwner, :modified, :name, :owner, :purchaseOrder, :status
+  attr_accessible :customer, :due, :internalOwner, :modified, :name, :owner, :purchaseOrder, :status, :invoicePaid
   validates :customer, :due, :internalOwner, :modified, :name, :owner, :purchaseOrder, :status, presence: true
 
   def self.search(search)

@@ -1,0 +1,45 @@
+<%= form_for @document do |f| %>
+<!-- t.string :documentName
+ 		 t.string :documentDescription
+     t.string :documentType
+     t.string :documentSize --> 
+<table>
+	<tr>
+		<td class="alignRight">
+			Name:
+		</td>
+		<td>
+			<%= f.text_field :documentName %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Desc:
+		</td>
+		<td>
+			<%= f.text_field :documentDescription %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Type:
+		</td>
+		<td>
+			<%= f.select :documentType, ['', 'Quote', 'Purchase Order', 'Invoice', 'Material Certification', 'Signed Packing Slip']  %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Size:
+		</td>
+		<td>
+			<%= f.text_field :documentSize %>
+		</td>
+	</tr>
+	<tr class="alignCenter">
+		<td colspan="2">
+			<%= f.submit %>
+		</td>
+	</tr>
+</table>
+<% end %>

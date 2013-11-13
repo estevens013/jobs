@@ -1,0 +1,41 @@
+<% title " - Documents" %>
+<div class="content">
+	<h1>Documents</h1>
+<!-- 		
+		# t.string :documentName
+ 		#  t.string :documentDescription
+ 		#  t.string :documentType
+ 		#  t.string :documentSize 
+  -->
+	<table>
+		<tr style="text-align:left;">
+			<th>Name</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Size</th>
+		</tr>
+		<% for document in @documents %>
+			<tr id="document_<%= document.id %>">
+				<td>
+					<%= link_to document.documentName, document_path(document) %>
+				</td>
+				<td style="padding-left: 10px;">
+					<%= document.documentDescription %>
+				</td>
+				<td style="padding-left: 10px;">
+					<%= document.documentType %>
+				</td>
+				<td style="padding-left: 10px;">
+					<%= document.documentSize %>
+				</td>
+				
+			</tr>
+		<% end %>
+	</table>
+	<br /><br />
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? %>
+	<%= link_to "New Document", documents_path, :method => :post %>
+	<% end %>
+	<!-- END ADMIN RESTRICTED -->
+</div>

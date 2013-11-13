@@ -10,20 +10,60 @@
 	</tr>
 	<tr>
 		<td class="alignRight">
+			Rev:
+		</td>
+		<td>
+			<%= f.text_field :partRev %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Serial:
+		</td>
+		<td>
+			<%= f.text_field :partSerial %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
 			Qty:
 		</td>
 		<td>
 			<%= f.text_field :partQuantity %>
 		</td>
 	</tr>
-	<!-- <tr>
-	  <td class="alignRight">
-	    Job:
-	  </td>
-	  <td>
-	    <%= f.text_field :job_id %>
-	  </td>
-	</tr>  -->
+	<tr>
+		<td class="alignRight">
+			Status:
+		</td>
+		<td>
+			<%= f.select :partStatus, ['', 'Quoting',  'In Process', 'Received', 'Inspected', 'Shipped']  %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Due:
+		</td>
+		<td>
+			<%= f.text_field :partVendorDue %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Shipped:
+		</td>
+		<td>
+			<%= f.text_field :partShipDate %>
+		</td>
+	</tr>
+	<tr>
+		<td class="alignRight">
+			Tracking:
+		</td>
+		<td>
+			<%= f.text_field :partTracking %>
+		</td>
+	</tr>
 	<tr class="alignCenter">
 		<td colspan="2">
 			<%= f.submit %>

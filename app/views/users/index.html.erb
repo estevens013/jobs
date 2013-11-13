@@ -27,8 +27,8 @@
 				<!-- END ADMIN RESTRICTED -->
 				<!-- ADMIN RESTRICTED -->
 				<% if admin? %>
-				<td><%= link_to 'Edit', edit_user_path(user) %></td>
-				<td>| <%= link_to 'Delete', user, :method => 'delete' %></td>
+				<td><%= link_to 'Edit', edit_user_path(user) %>
+				| <%= link_to 'Delete', user, :method => 'delete' %></td>
 				<% end %>
 				<!-- END ADMIN RESTRICTED -->
 			</tr>

@@ -1,0 +1,19 @@
+<% title " - Document" %>
+<div class="content">
+	<!-- 		
+		# t.string :documentName
+ 		#  t.string :documentDescription
+ 		#  t.string :documentType
+ 		#  t.string :documentSize 
+  -->
+	<h4>Doc Name: <%= @document.documentName %></h4>
+	<h4>Doc Desc: <%= @document.documentDescription %></h4>
+	<h4>Doc Type: <%= @document.documentType %></h4>
+	<h4>Doc Size: <%= @document.documentSize %></h4>
+	<!-- ADMIN RESTRICTED -->
+	<% if admin? || current_user.customer == "In Ternal" %>
+	&nbsp;<%= link_to 'Edit', edit_document_path(@document) %>
+	&nbsp;<%= link_to 'Delete', @document, :method => 'delete' %>
+	<!-- end Restricted -->
+	<% end %>
+</div>
